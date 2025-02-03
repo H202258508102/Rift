@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片切换</title>
+    <style>
+        .image-container img {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+        .image-container img.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="rift1.jpg" class="active">
+        <img src="rift2.jpg">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('.image-container img');
+            let currentIndex = 0;
+
+            function showNextImage() {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }
+
+            document.querySelector('.image-container').addEventListener('click', function () {
+                showNextImage();
+            });
+        });
+    </script>
+</body>
+</html>
